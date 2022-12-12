@@ -212,7 +212,8 @@ nodeagent_deploy(){
     fornaxcoreip=`gcloud compute instances list --format='table(INTERNAL_IP)' --filter="name=fornaxcore" | awk '{if(NR==2) print $1}'`
     echo "Fornaxcore IP is: $fornaxcoreip"
 	  # following line command, put nodeagent run at background
-	  nohup sudo ./bin/nodeagent --fornaxcore-url $fornaxcoreip:18001 --disable-swap=false >> nodeagent.logs 2>&1 &
+	#  nohup sudo ./bin/nodeagent --fornaxcore-url $fornaxcoreip:18001 --disable-swap=false >> nodeagent.logs 2>&1 &
+        #  nohup sudo ./bin/simulatenode --num-of-node 100 --fornaxcore-ip $fornaxcoreip:18001 > simulatenode-$(date '+%s').log 2>&1 &
     echo -e "## DONE\n"
 }
 

@@ -97,7 +97,8 @@ deploy_instance_by_filter() {
             echo "copy file to nodeagent instance: $name"
             gcloud compute ssh $name --command="mkdir -p ~/go/src/centaurusinfra.io/fornax-serverless/bin" --project=quark-serverless --zone=us-central1-a > /dev/null 2>&1 &
             gcloud compute scp ./bin/nodeagent $name:~/go/src/centaurusinfra.io/fornax-serverless/bin/ --project=quark-serverless --zone=us-central1-a &
-            gcloud compute scp ./hack/test-gce/nodeagent_deploy.sh ./hack/test-gce/nodeagent_start.sh  ./hack/test-gce/nodeagent_status.sh $name:~/ --project=quark-serverless --zone=us-central1-a &
+            gcloud compute scp ./bin/simulatenode $name:~/go/src/centaurusinfra.io/fornax-serverless/bin/  --project=quark-serverless --zone=us-central1-a &
+	    gcloud compute scp ./hack/test-gce/nodeagent_deploy.sh ./hack/test-gce/nodeagent_start.sh  ./hack/test-gce/nodeagent_status.sh $name:~/ --project=quark-serverless --zone=us-central1-a &
         fi
     done
     
